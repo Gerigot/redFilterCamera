@@ -12,14 +12,6 @@ const getStreams = async () => {
     return streams;
 }
 
-const cleannnn = async()=>{
-    const streams = await getStreams();
-    streams.getTracks().forEach(function(track) {
-        console.log(track);
-        track.stop();
-    })
-}
-
 
 export default function Stream({isActive}) {
     const videoEl = useRef(null);
@@ -38,12 +30,11 @@ export default function Stream({isActive}) {
                     console.log(track);
                     track.stop();
                 })
+                videoEl.current.srcObject = null;
             }
         }
 
-        return ()=>{
-            cleannnn()
-        }
+        return ()=>{}
     }, [isActive])
     
     return (
