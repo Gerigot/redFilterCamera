@@ -1,6 +1,7 @@
 .button {
 	display: flex;
 	align-items: center;
+	justify-content: center;
 	width: 80vmin;
 	height: 80vmin;
 	border: 2px solid red;
@@ -13,6 +14,12 @@
 	background-color: #ff7373;
 	color: white;
 	user-select: none;
+	transition: all 0.2s linear;
+	outline: none;
+}
+.button:focus{
+	user-select: none;
+	outline: none;
 }
 .button:hover {
 	transform: translateY(20px);
@@ -24,6 +31,9 @@
 	width: 100%;
 	flex-grow: 1;
 }
+.hide{
+	display: none;
+}
 
 .filter {
 	position: absolute;
@@ -34,3 +44,21 @@
 	mix-blend-mode: multiply;
 	background: hsla(0, 100%, 50%, 1);
 }
+
+.close{
+	position: absolute;
+	top: 0;
+	left: 0;
+	padding: .5rem;
+	font-size: 3em;
+	height: 2em;
+	width:  2em;
+	cursor: pointer;
+	user-select: none;
+	outline: none;
+}
+.close:focus{
+	user-select: none;
+	outline: none;
+}
+

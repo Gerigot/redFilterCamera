@@ -1,34 +1,52 @@
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useEffect, useRef } from 'react'
 import './Stream.css';
 
-export default function Stream() {
-    const videoEl = useRef(null);
-    const [stream, setStream] = useState(undefined)
+const getStreams = async () => {
+    const constraints = {
+        audio: false, 
+        video: {
+            facingMode: 'environment'
+        }
+    };
+    const streams = await navigator.mediaDevices.getUserMedia(constraints);
+    return streams;
+}
 
+const cleannnn = async()=>{
+    const streams = await getStreams();
+    streams.getTracks().forEach(function(track) {
+        console.log(track);
+        track.stop();
+    })
+}
+
+
+export default function Stream({isActive}) {
+    const videoEl = useRef(null);
     useEffect(() => {
-        const openStream = async () => {
-            const constraints = {
-                audio: false, 
-                video: {
-                    facingMode: 'environment'
+        if(isActive){
+            const openStream = async () => {
+                const streams = await getStreams();
+                if(videoEl){
+                    videoEl.current.srcObject = streams;
                 }
-            };
-            const streams = await navigator.mediaDevices.getUserMedia(constraints);
-            setStream(streams);
-            if(videoEl){
-                videoEl.current.srcObject = streams;
+            }
+            openStream()
+        }else{
+            if(videoEl.current && videoEl.current.srcObject){
+                videoEl.current.srcObject.getTracks().forEach(function(track) {
+                    console.log(track);
+                    track.stop();
+                })
             }
         }
-        openStream()
-        return () => {
-            stream && stream.getTracks().forEach(function(track) {
-                track.stop();
-            });
-        }
-        // eslint-disable-next-line
-}, [])
 
+        return ()=>{
+            cleannnn()
+        }
+    }, [isActive])
+    
     return (
-        <video ref={videoEl} className="stream" playsInline autoPlay></video>
+        <video ref={videoEl} className={`stream${!isActive ? ' hide': ''}`} playsInline autoPlay></video>
     )
 }

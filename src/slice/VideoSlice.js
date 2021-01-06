@@ -1,4 +1,4 @@
-import {createSlice} from '@reduxjs/toolkit';
+import {createAction, createSlice} from '@reduxjs/toolkit';
 
 const VideoSlice = createSlice({
     name: "video",
@@ -18,6 +18,9 @@ const VideoSlice = createSlice({
 })
 
 const {actions, reducer} = VideoSlice;
+
+//custom actions
+export const buttonPushed = createAction("PUSHED");
 
 export const {changeHue, setActive} = actions
 

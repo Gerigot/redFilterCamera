@@ -1,7 +1,7 @@
 import { useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import './App.css';
-import { setActive } from './Slice/VideoSlice';
+import { buttonPushed, setActive } from './slice/VideoSlice';
 import Stream from './stream/Stream';
 
 function App() {
@@ -10,19 +10,28 @@ function App() {
    return state.active;
   })
 
-  const activate = useCallback(
+  const onButtonPushed = useCallback(
     () => {
-      dispatch(setActive(true));
+      dispatch(buttonPushed());
+    },
+    [dispatch],
+  )
+  const onCloseClick = useCallback(
+    () => {
+      dispatch(setActive(false));
     },
     [dispatch],
   )
   return (
     <>
-    {!isActive && <div className="button" onClick={activate} >Clicca per attivare la videocamera filtrata</div>}
-    {isActive && <div className="containerStream">
-         <Stream />
+    {!isActive && <div className="button" onClick={onButtonPushed} >PUSH</div>}
+    <div className={`containerStream${!isActive ? ' hide': ''}`}>
+         <Stream isActive={isActive} />
+         {isActive && <>
         <div className="filter"></div>
-    </div>}
+        <div className="close" onClick={onCloseClick}>X</div>
+        </>}
+    </div>
     </>
   );
 }
