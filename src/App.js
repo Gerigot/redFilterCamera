@@ -1,24 +1,29 @@
-import logo from './logo.svg';
+import { useCallback } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import './App.css';
+import { setActive } from './Slice/VideoSlice';
+import Stream from './stream/Stream';
 
 function App() {
+  const dispatch = useDispatch();
+  const isActive = useSelector(state => {
+   return state.active;
+  })
+
+  const activate = useCallback(
+    () => {
+      dispatch(setActive(true));
+    },
+    [dispatch],
+  )
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+    {!isActive && <div className="button" onClick={activate} >Clicca per attivare la videocamera filtrata</div>}
+    {isActive && <div className="containerStream">
+         <Stream />
+        <div className="filter"></div>
+    </div>}
+    </>
   );
 }
 
