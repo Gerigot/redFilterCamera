@@ -16,6 +16,8 @@
 	user-select: none;
 	transition: all 0.2s linear;
 	outline: none;
+	-webkit-tap-highlight-color: transparent;
+	
 }
 .button:focus{
 	user-select: none;
