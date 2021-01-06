@@ -1,6 +1,6 @@
 {
   "files": {
-    "main.css": "/redFilterCamera/static/css/main.eb75ff17.chunk.css",
+    "main.css": "/redFilterCamera/static/css/main.e63992af.chunk.css",
     "main.js": "/redFilterCamera/static/js/main.01c08d46.chunk.js",
     "main.js.map": "/redFilterCamera/static/js/main.01c08d46.chunk.js.map",
     "runtime-main.js": "/redFilterCamera/static/js/runtime-main.0f3e7a7d.js",
@@ -8,13 +8,13 @@
     "static/js/2.c6586e9b.chunk.js": "/redFilterCamera/static/js/2.c6586e9b.chunk.js",
     "static/js/2.c6586e9b.chunk.js.map": "/redFilterCamera/static/js/2.c6586e9b.chunk.js.map",
     "index.html": "/redFilterCamera/index.html",
-    "static/css/main.eb75ff17.chunk.css.map": "/redFilterCamera/static/css/main.eb75ff17.chunk.css.map",
+    "static/css/main.e63992af.chunk.css.map": "/redFilterCamera/static/css/main.e63992af.chunk.css.map",
     "static/js/2.c6586e9b.chunk.js.LICENSE.txt": "/redFilterCamera/static/js/2.c6586e9b.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.0f3e7a7d.js",
     "static/js/2.c6586e9b.chunk.js",
-    "static/css/main.eb75ff17.chunk.css",
+    "static/css/main.e63992af.chunk.css",
     "static/js/main.01c08d46.chunk.js"
   ]
 }
