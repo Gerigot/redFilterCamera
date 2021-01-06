@@ -1,5 +1,13 @@
+import { makeStyles } from '@material-ui/styles';
 import React, { useEffect, useRef } from 'react'
-import './Stream.css';
+
+const useStyles = makeStyles({
+    stream: {
+        display: ({isActive}) => (isActive?'block': 'none'),
+        width: '100%',
+        border: '1px solid red',
+      }
+  })
 
 const getStreams = async () => {
     const constraints = {
@@ -8,12 +16,19 @@ const getStreams = async () => {
             facingMode: 'environment'
         }
     };
-    const streams = await navigator.mediaDevices.getUserMedia(constraints);
-    return streams;
+    try {
+        
+        const streams = await navigator.mediaDevices.getUserMedia(constraints);
+        return streams;
+    } catch (error) {
+        alert(error);
+       return null; 
+    }   
 }
 
 
 export default function Stream({isActive}) {
+    const classes = useStyles({isActive});
     const videoEl = useRef(null);
     useEffect(() => {
         if(isActive){
@@ -38,6 +53,6 @@ export default function Stream({isActive}) {
     }, [isActive])
     
     return (
-        <video ref={videoEl} className={`stream${!isActive ? ' hide': ''}`} playsInline autoPlay></video>
+        <video ref={videoEl} className={classes.stream} playsInline autoPlay></video>
     )
 }
